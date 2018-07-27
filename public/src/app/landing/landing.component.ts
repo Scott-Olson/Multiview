@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
 	channelSearch(name: string): any{
 		console.log('name: ', name);
 		this._landingService.searchStream(name, this.status).subscribe( res => {
-			console.log('res: ', res['channels']);
+			// console.log('res: ', res['channels']);
 			this.searchResults = res['channels'];
 
 		})
@@ -39,7 +39,7 @@ export class LandingComponent implements OnInit {
 
 	channelLiveSearch(name: string):any {
 		this._landingService.searchStreamLive(name).subscribe( res => {
-			console.log('res live search: ', res);
+			// console.log('res live search: ', res);
 			this.searchResults = res;
 
 		})
