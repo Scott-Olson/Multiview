@@ -1,0 +1,49 @@
+.streamWindow {
+	/*width: 854px;*/
+	/*height: 480ox;*/
+	display: inline-block;
+	/*border: 1px solid red;*/
+}
+
+body {
+	background-color: rgb(5,3,5);
+}
+
+.window1{
+	position: relative;
+	animation-name: w1;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes w1 {
+    from {left: -1000px; top:5%;}
+    to {left: 0px; top:5%;}
+}
+
+.window2{
+	position: relative;
+	animation-name: w2;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes w2 {
+    from {left: 3000px; top:5%;}
+    to {left: 5px; top:5%;}
+}
+
+.window3{
+	position: relative;
+	animation-name: w3;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes w3 {
+    from {top: 1000px; left: 27%;}
+    to {top: 0px; left: 27%;}
+}

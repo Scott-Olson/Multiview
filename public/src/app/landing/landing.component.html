@@ -1,0 +1,62 @@
+<div class="header jumbotron jumbotron-fluid">
+	<div class="container">
+		<h2 class="display-4">Welcome to MultiStream.</h2>
+		<h4> - Add 2 - 4 streams to your list of streams</h4>
+		<h4> - Press launch</h4>
+		<h4> - Enjoy!</h4>
+		<!-- <button (click)="channelSearch('
+	Tfue')">Test</button> -->
+	</div>
+</div>
+<div class="row">
+	<div class="col-2"></div>
+	<div class="col-3 topTenContainer" *ngIf="topTenStreams">
+		<h3>TOP TEN LIVE STREAMS:</h3>
+		<ul>
+			<li *ngFor="let stream of topTenStreams">
+				<div class="topListDiv" (click)="addToList(stream['channel'])">
+					<img src="{{stream['preview']['small']}}">
+					<div>
+						<p>{{stream['channel']['display_name']}} </p>
+						<!-- <p>Playing: {{ stream['game']}}</p> -->
+						<p class="viewerCount">{{ stream['viewers'] }}</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="col-3" id="searchDiv">
+		<h3>SEARCH FOR STREAMS:</h3>
+			<div class="input-group">
+				<input (keyup)="channelSearch($event.target.value)" type="text" name="searchText" class="form-control" placeholder="Search for twitch channels..." id="searchBar">
+			</div>
+
+		<div *ngIf="searchResults" class="list-group">
+			<ul *ngFor="let channel of searchResults">
+				<li (click)="addToList(channel)" class="list-group-item d-flex justify-content-between align-items-center"> {{ channel['display_name'] }}
+					<span class="badge badge-dark badge-pill">+</span></li>
+				
+			</ul>
+		</div>
+	</div>
+	<div class="col-3 selectedContainer">
+		<div class="selectedStreams">
+		<h3>SELECTED STREAMS:</h3>
+			<div *ngIf="selectedStreams">
+				<ul *ngFor="let stream of selectedStreams">
+					<li class="d-flex justify-content-between align-items-center">
+							<p>{{ stream['display_name'] }}</p>
+							<span class="badge badge-dark badge-pill"><button id="addButton" (click)="removeFromList(stream)">Remove</button></span>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<button class="btn btn-outline-secondary" (click)="launchSelected()">Launch selected streams</button>
+		<p *ngIf="launchError">{{ launchError }}</p>
+	</div>
+</div>
+
+
+
+

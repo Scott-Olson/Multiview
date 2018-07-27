@@ -1,0 +1,38 @@
+.streamWindow {
+
+	display: inline-block;
+	/*border: 1px solid red;*/
+}
+
+body{
+	background-color: rgb(5,3,5);
+}
+
+.window1{
+	position: relative;
+	animation-name: w1;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes w1 {
+    from {left: -1000px;}
+    to {left: 0%;}
+}
+
+.window2{
+	position: relative;
+	animation-name: w2;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes w2 {
+    from {left: 3000px;}
+    to {left: 5px;}
+}
+
+
+
