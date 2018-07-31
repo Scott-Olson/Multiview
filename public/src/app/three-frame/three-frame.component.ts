@@ -10,6 +10,8 @@ export class ThreeFrameComponent implements OnInit {
 	streamOne;
 	streamTwo;
 	streamThree;
+	streamHeight;
+	streamWidth;
 	constructor(
  		private _route: ActivatedRoute,
 		private _router: Router
@@ -22,6 +24,18 @@ export class ThreeFrameComponent implements OnInit {
 				this.streamTwo = params['second'];
 				this.streamThree = params['third'];
 			})
+
+		var initialHeight = window.innerHeight;
+		var initialWidth = window.innerWidth;
+
+		var streamH = initialHeight * 0.48;
+		console.log(streamH);
+		var streamW = initialWidth * 0.48;
+		console.log(streamW);
+
+		this.streamHeight = streamH;
+		this.streamWidth = streamW;
+
 		this.loadDynamicallyScript(this.streamOne, 'stream1');
 		this.loadDynamicallyScript(this.streamTwo, 'stream2');
 		this.loadDynamicallyScript(this.streamThree, 'stream3');
@@ -34,8 +48,8 @@ export class ThreeFrameComponent implements OnInit {
 	  	document.head.appendChild(script);
 	  	script.onload = () => {
 		  	var embed = new Twitch.Embed(windowNumber, {
-					width: 640,
-					height: 360,
+					width: this.streamWidth,
+					height: this.streamHeight,
 					channel: streamName,
 					layout: "video",
 					autoplay: false,

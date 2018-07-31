@@ -22,6 +22,8 @@ export class LandingComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log('height: ', window.innerHeight);
+		console.log('width: ', window.innerWidth);
 		this._landingService.topTen().subscribe(response =>{
 			this.topTenStreams = response['streams'];
 			console.log('landing component top ten response', this.topTenStreams);

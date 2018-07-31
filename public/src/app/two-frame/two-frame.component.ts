@@ -9,7 +9,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class TwoFrameComponent implements OnInit {
 	streamOne;
 	streamTwo;
-	// HandW;
+	streamHeight;
+	streamWidth;
+
  	constructor(
  		private _route: ActivatedRoute,
 		private _router: Router
@@ -21,6 +23,18 @@ export class TwoFrameComponent implements OnInit {
 				this.streamOne = params['first'];
 				this.streamTwo = params['second'];
 			})
+
+ 		var initialHeight = window.innerHeight;
+		var initialWidth = window.innerWidth;
+
+		var streamH = initialHeight * 0.48;
+		console.log(streamH);
+		var streamW = initialWidth * 0.48;
+		console.log(streamW);
+
+		this.streamHeight = streamH;
+		this.streamWidth = streamW;
+
 		// this.HandW = {"width": "576", "height": "1024"}
 		this.loadDynamicallyScript(this.streamOne, 'stream1');
 		this.loadDynamicallyScript(this.streamTwo, 'stream2');
@@ -33,8 +47,8 @@ export class TwoFrameComponent implements OnInit {
 	  	document.head.appendChild(script);
 	  	script.onload = () => {
 		  	var embed = new Twitch.Embed(windowNumber, {
-					width: 704,
-					height: 396,
+					width: this.streamWidth,
+					height: this.streamHeight,
 					channel: streamName,
 					layout: "video",
 					autoplay: false,

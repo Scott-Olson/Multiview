@@ -7,6 +7,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./four-frame.component.css']
 })
 export class FourFrameComponent implements OnInit {
+	streamHeight;
+	streamWidth;
 	streamOne;
 	streamTwo;
 	streamThree;
@@ -25,6 +27,19 @@ export class FourFrameComponent implements OnInit {
 				this.streamThree = params['third'];
 				this.streamFour = params['fourth'];
 		})
+
+		var initialHeight = window.innerHeight;
+		var initialWidth = window.innerWidth;
+
+		var streamH = initialHeight * 0.48;
+		console.log(streamH);
+		var streamW = initialWidth * 0.48;
+		console.log(streamW);
+
+		this.streamHeight = streamH;
+		this.streamWidth = streamW;
+
+
 		this.loadDynamicallyScript(this.streamOne, 'stream1');
 		this.loadDynamicallyScript(this.streamTwo, 'stream2');
 		this.loadDynamicallyScript(this.streamThree, 'stream3');
@@ -34,12 +49,13 @@ export class FourFrameComponent implements OnInit {
 	public loadDynamicallyScript(streamName, windowNumber) {
 		var script = document.createElement('script');
 		script.src = "https://embed.twitch.tv/embed/v1.js";
+		console.log("script: ",script)
 	  	script.async = false;
 	  	document.head.appendChild(script);
 	  	script.onload = () => {
 		  	var embed = new Twitch.Embed(windowNumber, {
-					width: 640,
-					height: 360,
+					width: this.streamWidth,
+					height: this.streamHeight,
 					channel: streamName,
 					layout: "video",
 					autoplay: false,
